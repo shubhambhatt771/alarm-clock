@@ -87,6 +87,11 @@ function showError(msg){
     errorBox.innerText = msg;
 }
 
+function deleteAlarm(i){
+    alarms.splice(i, 1);
+    reRenderAlarms();
+}
+
 function reRenderAlarms(){
     // clears alarm list
     showError('');
@@ -99,7 +104,7 @@ function reRenderAlarms(){
     alarmsEl.innerHTML = '';
     for (let i= 0; i< alarms.length; i++){
         let liEl = document.createElement('li');
-        liEl.textContent = alarms[i];
+        liEl.innerHTML = `${alarms[i]} <button style="margin-left:15px; padding:0px; border:none; color: red" onclick="deleteAlarm(${i})"><i class="fas fa-trash" /></button>`;
         alarmsEl.appendChild(liEl);
     }
 }
